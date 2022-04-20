@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+
+  kinesis:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: python/kinesis:test
+    container_name: kinesis
+    env_file: ".env"
