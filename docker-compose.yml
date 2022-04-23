@@ -9,3 +9,6 @@ services:
     image: python/kinesis:test
     container_name: kinesis
     env_file: ".env"
+    command: ["/opt/kinesis/test.sh"]
+    volumes:
+      - "${AWS_DIR}:/root/.aws"
