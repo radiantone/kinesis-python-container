@@ -19,5 +19,6 @@ RUN ../venv/bin/python setup.py download_jars
 RUN ../venv/bin/python setup.py install
 
 ADD test.sh /opt/kinesis/test.sh
+ENV PYTHON_PATH=/opt/kinesis/code
 
 WORKDIR /opt/kinesis

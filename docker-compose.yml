@@ -9,6 +9,7 @@ services:
     image: python/kinesis:test
     container_name: kinesis
     env_file: ".env"
-    command: ["/opt/kinesis/test.sh"]
+    command: ["/opt/kinesis/venv/bin/python","/opt/kinesis/services/sample_kinesis_wordputter.py","--stream","words","-w","cat","-w","dog","-w","bird","-w","lobster"]
     volumes:
       - "${AWS_DIR}:/root/.aws"
+      - "${SERVICE_DIR}:/opt/kinesis/services"
