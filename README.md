@@ -48,6 +48,17 @@ kinesis    | Put word: lobster into stream: words
 kinesis exited with code 0
 ```
 
+### AWS Example
+
+In the `examples` directory is a kinesis stream example from AWS. The unit test for it (also from AWS) is in `tests` directory.
+To run this
+
+```
+$ 
+
+
+```
+
 ## Configuration
 
 The basic configuration is done in the .env file, which defaults to

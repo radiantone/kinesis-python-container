@@ -18,7 +18,14 @@ WORKDIR /opt/kinesis/amazon-kinesis-client-python
 RUN ../venv/bin/python setup.py download_jars
 RUN ../venv/bin/python setup.py install
 
+ADD examples /opt/kinesis/examples
+RUN ../venv/bin/pip3 install pytest
+RUN mkdir /opt/kinesis/tests
+ADD setup.py /opt/kinesis/setup.py
 ADD test.sh /opt/kinesis/test.sh
-ENV PYTHON_PATH=/opt/kinesis/code
 
-WORKDIR /opt/kinesis
+WORKDIR /opt/kinesis/
+
+RUN venv/bin/python setup.py install
+ENV PYTHON_PATH=.:/opt/kinesis/code:/opt/kinesis/tests:/opt/kinesis/examples
+
