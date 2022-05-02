@@ -1,0 +1,15 @@
+.env
+amazon-kinesis-client-python/
+build
+git
+docs/_build
+dist
+*egg-info
+/**/__pycache__
+**/.~lock*
+./git
+.vscode
+.idea
+venv*
+logs
+./git/*
