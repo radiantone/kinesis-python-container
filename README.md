@@ -50,7 +50,7 @@ kinesis exited with code 0
 
 ### AWS Example
 
-In the `examples` directory is a kinesis stream example from AWS. The unit test for it (also from AWS) is in `tests` directory.
+In the `examples` directory is a kinesis stream example from AWS. 
 To run this
 
 ```
@@ -72,3 +72,11 @@ SERVICE_DIR=./amazon-kinesis-client-python/samples
 AWS_DIR is your .aws config directory containing your credentials
 KINESIS_ENDPOINT is not currently used, but will soon. TBD
 SERVICE_DIR is where your kineis python client code resides (aka your service) on your host computer. This is then mounted as a volume by compose.
+
+## Test
+
+The unit test for it (also from AWS) is in `tests` directory.
+
+```
+$ docker compose up test
+```
