@@ -1,10 +1,13 @@
 import logging
 
 from flask import Flask
+from dotenv import load_dotenv
+load_dotenv()
 
 from .api import api
 
 app = Flask(__name__)
+
 
 # Join the api module (and loaded services therein) to the wsgi app
 logging.info("Initializing...")

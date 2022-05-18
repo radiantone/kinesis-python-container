@@ -4,9 +4,9 @@ from flask_restx import Api
 from .kinesis.service import api as kinesis
 
 api = Api(
-    title="Modular API",
+    title="Kinesis Producer API",
     version="1.0",
-    description="a boilerplate for flask restplus web service",
+    description="Content Catalog Kinesis Producer Micro-Service",
 )
 
 # Add services to this API namespace
