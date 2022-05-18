@@ -43,7 +43,7 @@ class PyTestCommand(distutils.cmd.Command):
 # package configuration - for reference see:
 # https://setuptools.readthedocs.io/en/latest/setuptools.html#id9
 setup(
-    packages=['examples'],
+    packages=['examples','catalog'],
     include_package_data=True,
     python_requires=">=3.9.*",
     install_requires=[
