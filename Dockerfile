@@ -14,10 +14,15 @@ RUN venv/bin/pip3 install amazon_kclpy
 RUN venv/bin/pip3 install pandas
 RUN venv/bin/pip3 install boto3
 RUN git clone https://github.com/awslabs/amazon-kinesis-client-python
+RUN git clone https://github.com/DisasterAWARE/aws-glue-schema-registry-python
 
 WORKDIR /opt/kinesis/amazon-kinesis-client-python
 RUN ../venv/bin/python setup.py download_jars
 RUN ../venv/bin/python setup.py install
+
+WORKDIR /opt/kinesis/aws-glue-schema-registry-python
+RUN ../venv/bin/python setup.py install
+RUN ../venv/bin/pip install -e .
 
 ADD examples /opt/kinesis/examples
 ADD catalog /opt/kinesis/catalog
