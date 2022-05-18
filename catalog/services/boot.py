@@ -10,8 +10,9 @@ app = Flask(__name__)
 logging.info("Initializing...")
 api.init_app(app)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(app.url_map)
-    # import bjoern
-    # bjoern.run(app, "0.0.0.0", 5000)
+    # To use super fast bjoern
+    #import bjoern
+    #bjoern.run(app, "0.0.0.0", 5000)
     app.run(debug=True)
