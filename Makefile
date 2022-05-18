@@ -36,6 +36,10 @@ update: format lint
 	git status
 
 
+.PHONY: debug
+debug: 
+	python3 -m catalog.services.boot
+
 .PHONY: update
 up: 
 	gunicorn --workers 4 --bind 0.0.0.0:5000 catalog.services.boot:app
