@@ -27,3 +27,17 @@ services:
       - "${AWS_DIR}:/root/.aws"
       - "${SERVICE_DIR}:/opt/kinesis/services"
       - "./tests:/opt/kinesis/tests"
+
+  run:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: python/kinesis:dev
+    container_name: kinesis
+    env_file: ".env"
+    command: ["/opt/kinesis/venv/bin/gunicorn","--bind","0.0.0.0:5000","catalog.services.boot:app"]
+    ports:
+      - 5000:5000
+    volumes:
+      - "${AWS_DIR}:/root/.aws"
+      - "${SERVICE_DIR}:/opt/kinesis/services"
