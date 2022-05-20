@@ -1,0 +1,93 @@
+{
+  "record:ALIDChangeEvent": {
+    "username": "ut culpa",
+    "alid_id": "laboris aliqua",
+    "timestamp": "in ut proident esse",
+    "alid_version": 1027709847,
+    "data": {
+      "id": "irure ullamco eiusmod in consectetur",
+      "entity_id": "laborum ut ex ipsum",
+      "feed_type": null,
+      "source_stream_start": "Excepteur est qui adipisicing",
+      "source_stream_end": "nisi consectetur",
+      "ad_window_type": null,
+      "ad_content_id": "Lorem nisi anim sunt minim",
+      "created_at": "nostrud",
+      "updated_at": "dolore incididunt qui dolor",
+      "delivery_partner_id": "id incididunt Lorem esse",
+      "legacy_asset_id": -2967203298382033000,
+      "version": -1455437250,
+      "ratings": [
+        {
+          "value": "adipisicing dolore sunt occaecat et",
+          "system": "in",
+          "advisories": [
+            "reprehenderit Duis eiusmod",
+            "est minim reprehenderit officia"
+          ],
+          "description": "ipsum incididunt consequat reprehenderit nostrud",
+          "filing_number": null,
+          "implied_maturity_value": null
+        },
+        {
+          "value": "qui cillum",
+          "system": "velit ipsum",
+          "advisories": [
+            "ut",
+            "dolore magna et"
+          ],
+          "description": "nulla",
+          "filing_number": -811605779,
+          "implied_maturity_value": -420282769
+        },
+        {
+          "value": "sunt consequat culpa adipisicing et",
+          "system": "dolor",
+          "advisories": [
+            "sed est",
+            "sunt"
+          ],
+          "description": null,
+          "filing_number": -1847748163,
+          "implied_maturity_value": null
+        },
+        {
+          "value": "incididunt ea ad nulla exercitation",
+          "system": "pariatur",
+          "advisories": [
+            "in",
+            "ullamco culpa dolore sunt",
+            "ullamco Excepteur Duis",
+            "ad commodo esse occaecat ut",
+            "do aute esse dolore"
+          ],
+          "description": "eu consequat ullamco",
+          "filing_number": null,
+          "implied_maturity_value": null
+        },
+        {
+          "value": "in laborum dolore sunt enim",
+          "system": "eu",
+          "advisories": [
+            "eiusmod est"
+          ],
+          "description": "eiusmod aliqua labore",
+          "filing_number": null,
+          "implied_maturity_value": 267379280
+        }
+      ],
+      "external_identifiers": {
+        "namespace": "aliquip ea esse",
+        "identifier": "velit adipisicing in"
+      },
+      "media_source": {
+        "namespace": "et sint ad",
+        "identifier": "quis laboris ad incididunt"
+      }
+    }
+  },
+  "sit_0": false,
+  "ipsum7_c": false,
+  "esse_eee": 96837727.37964612,
+  "et35b": -99031910.54763214
+}
