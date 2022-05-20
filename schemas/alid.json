@@ -1,0 +1,186 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"properties": {
+		"record:ALIDChangeEvent": {
+			"type": "object",
+			"required": ["username", "alid_id", "timestamp", "alid_version", "data"],
+			"additionalProperties": false,
+			"properties": {
+				"username": {
+					"default": "",
+					"type": "string"
+				},
+				"alid_id": {
+					"type": "string"
+				},
+				"timestamp": {
+					"type": "string"
+				},
+				"alid_version": {
+					"default": 1,
+					"type": "integer",
+					"minimum": -2147483648,
+					"maximum": 2147483647
+				},
+				"data": {
+					"type": "object",
+					"required": ["id", "entity_id", "feed_type", "source_stream_start", "source_stream_end", "ad_window_type", "ad_content_id", "created_at", "updated_at", "delivery_partner_id", "legacy_asset_id", "version", "ratings", "external_identifiers", "media_source"],
+					"additionalProperties": false,
+					"properties": {
+						"id": {
+							"type": "string"
+						},
+						"entity_id": {
+							"type": "string"
+						},
+						"feed_type": {
+							"default": null,
+							"oneOf": [{
+								"type": "string"
+							}, {
+								"type": "null"
+							}]
+						},
+						"source_stream_start": {
+							"default": null,
+							"oneOf": [{
+								"type": "string"
+							}, {
+								"type": "null"
+							}]
+						},
+						"source_stream_end": {
+							"default": null,
+							"oneOf": [{
+								"type": "string"
+							}, {
+								"type": "null"
+							}]
+						},
+						"ad_window_type": {
+							"default": null,
+							"oneOf": [{
+								"type": "string"
+							}, {
+								"type": "null"
+							}]
+						},
+						"ad_content_id": {
+							"default": null,
+							"oneOf": [{
+								"type": "string"
+							}, {
+								"type": "null"
+							}]
+						},
+						"created_at": {
+							"type": "string"
+						},
+						"updated_at": {
+							"type": "string"
+						},
+						"delivery_partner_id": {
+							"type": "string"
+						},
+						"legacy_asset_id": {
+							"default": null,
+							"oneOf": [{
+								"type": "integer",
+								"minimum": -9223372036854775808,
+								"maximum": 9223372036854775807
+							}, {
+								"type": "null"
+							}]
+						},
+						"version": {
+							"type": "integer",
+							"minimum": -2147483648,
+							"maximum": 2147483647
+						},
+						"ratings": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"required": ["value", "system", "advisories", "description", "filing_number", "implied_maturity_value"],
+								"additionalProperties": false,
+								"properties": {
+									"value": {
+										"type": "string"
+									},
+									"system": {
+										"type": "string"
+									},
+									"advisories": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									},
+									"description": {
+										"default": null,
+										"oneOf": [{
+											"type": "string"
+										}, {
+											"type": "null"
+										}]
+									},
+									"filing_number": {
+										"default": null,
+										"oneOf": [{
+											"type": "integer",
+											"minimum": -2147483648,
+											"maximum": 2147483647
+										}, {
+											"type": "null"
+										}]
+									},
+									"implied_maturity_value": {
+										"default": null,
+										"oneOf": [{
+											"type": "integer",
+											"minimum": -2147483648,
+											"maximum": 2147483647
+										}, {
+											"type": "null"
+										}]
+									}
+								}
+							}
+						},
+						"external_identifiers": {
+							"type": "object",
+							"required": ["namespace", "identifier"],
+							"additionalProperties": false,
+							"properties": {
+								"namespace": {
+									"type": "string"
+								},
+								"identifier": {
+									"type": "string"
+								}
+							}
+						},
+						"media_source": {
+							"oneOf": [{
+								"type": "null"
+							}, {
+								"type": "object",
+								"required": ["namespace", "identifier"],
+								"additionalProperties": false,
+								"properties": {
+									"namespace": {
+										"type": "string"
+									},
+									"identifier": {
+										"type": "string"
+									}
+								}
+							}]
+						}
+					}
+				}
+			}
+		}
+	}
+}

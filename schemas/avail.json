@@ -1,0 +1,236 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"properties": {
+		"record:AvailChangeEvent": {
+			"type": "object",
+			"required": ["username", "avail_id", "timestamp", "avail_version", "data"],
+			"additionalProperties": false,
+			"properties": {
+				"username": {
+					"default": "",
+					"type": "string"
+				},
+				"avail_id": {
+					"type": "string"
+				},
+				"timestamp": {
+					"type": "string"
+				},
+				"avail_version": {
+					"default": 1,
+					"type": "integer",
+					"minimum": -2147483648,
+					"maximum": 2147483647
+				},
+				"data": {
+					"type": "object",
+					"required": ["description", "access", "feature_rights"],
+					"additionalProperties": false,
+					"properties": {
+						"description": {
+							"type": "object",
+							"required": ["id", "alid", "playback_type", "created_at", "updated_at", "version", "licensor_partner_id", "brand_id", "legacy_bundle_ids", "reporting_attributes"],
+							"additionalProperties": false,
+							"properties": {
+								"id": {
+									"type": "string"
+								},
+								"alid": {
+									"type": "string"
+								},
+								"playback_type": {
+									"enum": ["vod", "recorded", "live"]
+								},
+								"created_at": {
+									"type": "string"
+								},
+								"updated_at": {
+									"type": "string"
+								},
+								"version": {
+									"type": "integer",
+									"minimum": -2147483648,
+									"maximum": 2147483647
+								},
+								"licensor_partner_id": {
+									"type": "string"
+								},
+								"brand_id": {
+									"type": "string"
+								},
+								"legacy_bundle_ids": {
+									"type": "array",
+									"items": {
+										"type": "integer",
+										"minimum": -2147483648,
+										"maximum": 2147483647
+									}
+								},
+								"reporting_attributes": {
+									"type": "object",
+									"required": ["lookback"],
+									"additionalProperties": false,
+									"properties": {
+										"lookback": {
+											"type": "boolean"
+										}
+									}
+								}
+							}
+						},
+						"access": {
+							"type": "object",
+							"required": ["content_entitlement", "geo_right_type", "distribution_context", "geo_da_id", "min_promotional_start", "available_at", "expires_at", "channel_id", "schedule_start", "schedule_end", "kids_profile", "limiters", "device_restriction_groups", "device_location_sharing", "language_holdbacks", "coming_soon_text_id", "coming_soon_date_format"],
+							"additionalProperties": false,
+							"properties": {
+								"content_entitlement": {
+									"type": "string"
+								},
+								"geo_right_type": {
+									"oneOf": [{
+										"type": "null"
+									}, {
+										"enum": ["couch", "roaming"]
+									}]
+								},
+								"distribution_context": {
+									"type": "string"
+								},
+								"geo_da_id": {
+									"type": "integer",
+									"minimum": -2147483648,
+									"maximum": 2147483647
+								},
+								"min_promotional_start": {
+									"default": null,
+									"oneOf": [{
+										"type": "string"
+									}, {
+										"type": "null"
+									}]
+								},
+								"available_at": {
+									"type": "string"
+								},
+								"expires_at": {
+									"default": null,
+									"oneOf": [{
+										"type": "string"
+									}, {
+										"type": "null"
+									}]
+								},
+								"channel_id": {
+									"default": null,
+									"oneOf": [{
+										"type": "string"
+									}, {
+										"type": "null"
+									}]
+								},
+								"schedule_start": {
+									"default": null,
+									"oneOf": [{
+										"type": "string"
+									}, {
+										"type": "null"
+									}]
+								},
+								"schedule_end": {
+									"default": null,
+									"oneOf": [{
+										"type": "string"
+									}, {
+										"type": "null"
+									}]
+								},
+								"kids_profile": {
+									"oneOf": [{
+										"type": "boolean"
+									}, {
+										"type": "null"
+									}]
+								},
+								"limiters": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								},
+								"device_restriction_groups": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								},
+								"device_location_sharing": {
+									"type": "object",
+									"required": ["require_location_services"],
+									"additionalProperties": false,
+									"properties": {
+										"require_location_services": {
+											"oneOf": [{
+												"type": "boolean"
+											}, {
+												"type": "null"
+											}]
+										}
+									}
+								},
+								"language_holdbacks": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"required": ["track_type", "languages"],
+										"additionalProperties": false,
+										"properties": {
+											"track_type": {
+												"enum": ["audio", "caption"]
+											},
+											"languages": {
+												"type": "array",
+												"items": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								},
+								"coming_soon_text_id": {
+									"default": null,
+									"oneOf": [{
+										"type": "string"
+									}, {
+										"type": "null"
+									}]
+								},
+								"coming_soon_date_format": {
+									"default": null,
+									"oneOf": [{
+										"type": "string"
+									}, {
+										"type": "null"
+									}]
+								}
+							}
+						},
+						"feature_rights": {
+							"type": "object",
+							"required": ["flags"],
+							"additionalProperties": false,
+							"properties": {
+								"flags": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
