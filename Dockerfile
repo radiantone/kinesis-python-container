@@ -13,6 +13,7 @@ RUN venv/bin/pip3 --no-cache-dir install --upgrade awscli
 RUN venv/bin/pip3 install amazon_kclpy
 RUN venv/bin/pip3 install pandas
 RUN venv/bin/pip3 install boto3
+RUN venv/bin/pip3 install python-dotenv
 RUN git clone https://github.com/awslabs/amazon-kinesis-client-python
 RUN git clone https://github.com/DisasterAWARE/aws-glue-schema-registry-python
 
@@ -23,6 +24,7 @@ RUN ../venv/bin/python setup.py install
 WORKDIR /opt/kinesis/aws-glue-schema-registry-python
 RUN ../venv/bin/python setup.py install
 RUN ../venv/bin/pip install -e .
+RUN ../venv/bin/pip install kafka-python
 
 ADD examples /opt/kinesis/examples
 ADD catalog /opt/kinesis/catalog
