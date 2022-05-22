@@ -66,13 +66,21 @@ AVAIL_SCHEMA=/opt/kinesis/schemas/avail.json
 ```
 
 *AWS_DIR* is your .aws config directory containing your credentials
+
 *AVAIL_STREAM_NAME* is the name of the AVAIL kinesis stream
+
 *ALID_STREAM_NAME* is the name of the ALID kinesis stream
+
 *SERVICE_DIR* is where your kinesis python client code resides (aka your service) on your host computer. This is then mounted as a volume by compose.
+
 *PYTHON_PATH* should not have to be changed, but you can add to it if necessary
+
 *PARTITION_KEY* Kinesis stream partition key.
+
 *GLUE-REGISTRY* Name of AWS Glue registry where message schemas will be posted
+
 *ALID_SCHEMA* The json-schema file for ALID messages
+
 *AVAIL_SCHEMA* The json-schema file for AVAIL messages
 
 ## Test
