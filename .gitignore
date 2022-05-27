@@ -1,4 +1,5 @@
 .env
+bak/
 aws-glue-schema-registry-python/
 amazon-kinesis-client-python/
 build
