@@ -1,98 +1,99 @@
 {
-  "username": "consequat sunt proident amet",
-  "avail_id": "Excepteur sint",
-  "timestamp": "laboris",
-  "avail_version": -94587303,
-  "data": {
-    "description": {
-      "id": "aliqua in",
-      "alid": "amet sunt ut incididunt dolore",
-      "playback_type": "recorded",
-      "created_at": "ad Lorem dolor sunt",
-      "updated_at": "ex adipisicing exercitation nostrud",
-      "version": -123975584,
-      "licensor_partner_id": "velit dolor",
-      "brand_id": "ut ea id nisi",
-      "legacy_bundle_ids": [
-        486877963,
-        -1539766372,
-        -549075610,
-        1116350323
-      ],
-      "reporting_attributes": {
-        "lookback": false
-      }
-    },
-    "access": {
-      "content_entitlement": "anim minim quis",
-      "geo_right_type": null,
-      "distribution_context": "reprehenderit",
-      "geo_da_id": -781330683,
-      "min_promotional_start": null,
-      "available_at": "dolore",
-      "expires_at": null,
-      "channel_id": null,
-      "schedule_start": null,
-      "schedule_end": null,
-      "kids_profile": null,
-      "limiters": [
-        "in labore aute amet eiusmod",
-        "ex consequat culpa irure anim",
-        "sunt dolor",
-        "id aute fugiat reprehenderit",
-        "sit non"
-      ],
-      "device_restriction_groups": [
-        "nulla",
-        "sint anim ullamco nisi ipsum",
-        "eu tempor"
-      ],
-      "device_location_sharing": {
-        "require_location_services": false
-      },
-      "language_holdbacks": [
-        {
-          "track_type": "caption",
-          "languages": [
-            "est aliquip in do voluptate",
-            "ex et adipisicing sunt aliquip",
-            "quis"
-          ]
-        },
-        {
-          "track_type": "audio",
-          "languages": [
-            "ullamco",
-            "minim consequat reprehenderit dolore",
-            "consequat Duis sunt deserunt",
-            "ut Duis",
-            "officia magna do elit"
-          ]
-        },
-        {
-          "track_type": "caption",
-          "languages": [
-            "tempor ea esse dolore id",
-            "do cillum anim sit laboris",
-            "quis dolore",
-            "pariatur dolore in",
-            "anim id ut dolor"
-          ]
-        },
-        {
-          "track_type": "caption",
-          "languages": [
-            "exercitation qui magna"
-          ]
-        }
-      ],
-      "coming_soon_text_id": null,
-      "coming_soon_date_format": "enim aliqua ut"
-    },
-    "feature_rights": {
-      "flags": [
-        "ex"
-      ]
-    }
-  }
+	"record:AvailChangeEvent": {
+		"username": "consequat sunt proident amet",
+		"avail_id": "Excepteur sint",
+		"timestamp": "laboris",
+		"avail_version": -94587303,
+		"data": {
+			"description": {
+				"id": "aliqua in",
+				"alid": "amet sunt ut incididunt dolore",
+				"playback_type": "recorded",
+				"created_at": "ad Lorem dolor sunt",
+				"updated_at": "ex adipisicing exercitation nostrud",
+				"version": -123975584,
+				"licensor_partner_id": "velit dolor",
+				"brand_id": "ut ea id nisi",
+				"legacy_bundle_ids": [
+					486877963,
+					-1539766372,
+					-549075610,
+					1116350323
+				],
+				"reporting_attributes": {
+					"lookback": false
+				}
+			},
+			"access": {
+				"content_entitlement": "anim minim quis",
+				"geo_right_type": null,
+				"distribution_context": "reprehenderit",
+				"geo_da_id": -781330683,
+				"min_promotional_start": null,
+				"available_at": "dolore",
+				"expires_at": null,
+				"channel_id": null,
+				"schedule_start": null,
+				"schedule_end": null,
+				"kids_profile": null,
+				"limiters": [
+					"in labore aute amet eiusmod",
+					"ex consequat culpa irure anim",
+					"sunt dolor",
+					"id aute fugiat reprehenderit",
+					"sit non"
+				],
+				"device_restriction_groups": [
+					"nulla",
+					"sint anim ullamco nisi ipsum",
+					"eu tempor"
+				],
+				"device_location_sharing": {
+					"require_location_services": false
+				},
+				"language_holdbacks": [{
+						"track_type": "caption",
+						"languages": [
+							"est aliquip in do voluptate",
+							"ex et adipisicing sunt aliquip",
+							"quis"
+						]
+					},
+					{
+						"track_type": "audio",
+						"languages": [
+							"ullamco",
+							"minim consequat reprehenderit dolore",
+							"consequat Duis sunt deserunt",
+							"ut Duis",
+							"officia magna do elit"
+						]
+					},
+					{
+						"track_type": "caption",
+						"languages": [
+							"tempor ea esse dolore id",
+							"do cillum anim sit laboris",
+							"quis dolore",
+							"pariatur dolore in",
+							"anim id ut dolor"
+						]
+					},
+					{
+						"track_type": "caption",
+						"languages": [
+							"exercitation qui magna"
+						]
+					}
+				],
+				"coming_soon_text_id": null,
+				"coming_soon_date_format": "enim aliqua ut"
+			},
+			"feature_rights": {
+				"flags": [
+					"ex"
+				]
+			}
+		}
+	}
 }
