@@ -13,6 +13,9 @@ from jsonschema import (
     FormatChecker,
 )
 
+from dotenv import load_dotenv
+load_dotenv()
+
 api = Namespace("kinesis", "Kinesis service for Content Catalog", validate=True)
 
 validators = {}
@@ -30,21 +33,24 @@ class DatetimeEncoder(json.JSONEncoder):
 
 def update_schema(schema, registry):
     """ Update a schema to glue schema registry (create if not exists) """
-    with open(schema,'r') as avail:
-        name = Path(avail.name).stem
-        cmd = f"/home/darren/git/kinesis-python-container/venv/bin/aws glue create-schema  --schema-name {name} --data-format JSON --schema-definition file://{schema} --compatibility FORWARD"
+    with open(schema,'r') as schema_file:
+        name = Path(schema_file.name).stem
+        cli = os.environ['AWS_CLI']
+        registry = os.environ['GLUE_REGISTRY']
+
+        cmd = f"{cli} glue create-schema  --schema-name {name} --data-format JSON --schema-definition file://{schema} --compatibility FORWARD"
         logging.info(cmd)
 
         result = subprocess.run(cmd, stdout=subprocess.PIPE, shell=True)
         logging.info(result.stdout)
 
-        cmd = f"aws glue register-schema-version --schema-id SchemaName={name},RegistryName=default-registry --schema-definition file://{schema} "
+        cmd = f"{cli} glue register-schema-version --schema-id SchemaName={name},RegistryName={registry} --schema-definition file://{schema} "
         logging.info(cmd)
 
         result = subprocess.run(cmd, stdout=subprocess.PIPE, shell=True)
         logging.info(result.stdout)
 
-        the_schema = json.loads(avail.read())
+        the_schema = json.loads(schema_file.read())
 
         the_model = api.schema_model(name, the_schema)
 
@@ -54,16 +60,11 @@ def update_schema(schema, registry):
         schemas[schema] = the_schema
         models[schema] = the_model
 
-update_schema(os.environ['AVAIL_SCHEMA'], 'default-registry')
-update_schema(os.environ['ALID_SCHEMA'], 'default-registry')
 
-session = boto3.Session()   # Credentials are picked up from AWS_DIR env var, which points
-                            # to mounted directory
+update_schema(os.environ['AVAIL_SCHEMA'], os.environ['GLUE_REGISTRY'])
+update_schema(os.environ['ALID_SCHEMA'], os.environ['GLUE_REGISTRY'])
 
-glue_client = session.client('glue')
-
-logging.debug("PARTITION KEY %s",os.environ['PARTITION_KEY'])
-logging.debug("GLUE CLIENT %s",glue_client)
+logging.debug("GLUE_REGISTRY %s, PARTITION KEY %s",os.environ['GLUE_REGISTRY'], os.environ['PARTITION_KEY'])
 
 # Parts used from AWS example here: 
 # https://docs.aws.amazon.com/code-samples/latest/catalog/python-kinesis-streams-kinesis_stream.py.html
@@ -130,55 +131,78 @@ class CatalogKinesisStream:
             logging.exception("Couldn't create stream %s.", name)
             raise
 
-avail_stream = CatalogKinesisStream(boto3.client('kinesis'))
-alid_stream = CatalogKinesisStream(boto3.client('kinesis'))
-
-def create_streams():
-    try:
-        avail_stream.create(os.environ['AVAIL_STREAM_NAME'])
-    except Exception as ex:
-        logging.warn("Kinesis stream %s already exists.",os.environ['AVAIL_STREAM_NAME'])
-    finally:
-        avail_stream.describe(os.environ['AVAIL_STREAM_NAME'])
-    try:
-        alid_stream.create(os.environ['ALID_STREAM_NAME'])
-    except Exception as ex:
-        logging.warn("Kinesis stream %s already exists.",os.environ['ALID_STREAM_NAME'])
-    finally:
-        alid_stream.describe(os.environ['ALID_STREAM_NAME'])
-
-create_streams()
 
 @api.route("/alid")
 class CatalogAlidKinesisService(Resource):
+    """ Catalog alid kinesis stream endpoint """
+
+    def __init__(self):
+        super(CatalogAlidKinesisService, self).__init__()
+        self.alid_stream = CatalogKinesisStream(boto3.client('kinesis'))
+
+
+        logging.debug("Creating alid kinesis stream...")
+        try:
+            self.alid_stream.create(os.environ['ALID_STREAM_NAME'])
+            logging.debug("Alid kinesis stream created...")
+        except Exception as ex:
+            logging.warn("Kinesis stream %s already exists.",os.environ['ALID_STREAM_NAME'])
+        finally:
+            self.alid_stream.describe(os.environ['ALID_STREAM_NAME'])
 
     def get(self):
-        records = alid_stream.get_records(10)
+        records = self.alid_stream.get_records(10)
 
         return json.dumps(records, cls=DatetimeEncoder) #json.dumps([json.dumps(record, cls=DatetimeEncoder) for record in records])
 
     @api.expect(models[os.environ['ALID_SCHEMA']], validate=True)
     def post(self):
-        assert validators[os.environ['ALID_SCHEMA']].is_valid(api.payload) is True
+
+        return self.put(api.payload)
+
+    def put(self, message):
+        print(message)
+        assert validators[os.environ['ALID_SCHEMA']].is_valid(message) is True
         date = datetime.datetime.now()
         timestamp = date.timestamp()
-        response = alid_stream.put_record(api.payload,'alid')
+        response = self.alid_stream.put_record(message,'alid')
 
         return {"status": "posted", "schema":"alid", "timestamp":timestamp, "date":str(date), "response":json.dumps(response)}
 
 @api.route("/avail")
 class CatalogAvailKinesisService(Resource):
+    """ Catalog avail kinesis stream endpoint """
+
+    def __init__(self):
+        super(CatalogAvailKinesisService, self).__init__()
+        self.avail_stream = CatalogKinesisStream(boto3.client('kinesis'))
+
+
+        logging.debug("Creating availkinesis stream...")
+        try:
+            self.avail_stream.create(os.environ['AVAIL_STREAM_NAME'])
+            logging.debug("Avail kinesis stream created...")
+        except Exception as ex:
+            logging.warn("Kinesis stream %s already exists.",os.environ['AVAIL_STREAM_NAME'])
+        finally:
+            self.avail_stream.describe(os.environ['AVAIL_STREAM_NAME'])
 
     def get(self):
-        records = avail_stream.get_records(10)
+        records = self.avail_stream.get_records(10)
 
-        return json.dumps(records, cls=DatetimeEncoder) #json.dumps([json.dumps(record, cls=DatetimeEncoder) for record in records])
+        return json.dumps(records, cls=DatetimeEncoder)
 
     @api.expect(models[os.environ['AVAIL_SCHEMA']], validate=True)
     def post(self):
-        assert validators[os.environ['AVAIL_SCHEMA']].is_valid(api.payload) is True
+
+        return self.put(api.payload)
+
+
+    def put(self, message):
+        print(message)
+        assert validators[os.environ['AVAIL_SCHEMA']].is_valid(message) is True
         date = datetime.datetime.now()
         timestamp = date.timestamp()
-        response = avail_stream.put_record(api.payload,'avail')
+        response = self.alid_stream.put_record(message,'avail')
 
         return {"status": "posted", "schema":"avail", "timestamp":timestamp, "date":str(date), "response":json.dumps(response)}
