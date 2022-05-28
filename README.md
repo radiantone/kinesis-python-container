@@ -27,6 +27,14 @@ Step 3
 $ cp sample.env .env
 ```
 
+Step 4
+
+```
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ python setup.py install
+```
+
 ## Example
 
 To run the amazon kinesis example code
@@ -127,3 +135,16 @@ This is expected and is visible for information purposes. Since the schema it is
 After the startup completes you can visit http://localhost:5000 to reach the OpenAPI UI
 
 You can use the sample/dummy messages located in `./schemas/messages/` to paste into the POST endpoint calls, just be sure you use the `samele-alid.json` for the ALID API endpoint and the `sample-avail.json` for the AVAIL API endpoint.
+
+## Library Usage
+
+```
+from catalog.services.kinesis.service import CatalogAlidKinesisService
+alid_service = CatalogAlidKinesisService()
+
+import json
+alid_message = open('schemas/messages/sample-alid.json','r')
+alid_m = alid_message.read()
+alid_msg = json.loads(alid_m)
+alid_service.put(alid_msg)
+```
