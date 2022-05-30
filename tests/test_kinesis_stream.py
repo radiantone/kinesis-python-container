@@ -9,7 +9,7 @@ import boto3
 from botocore.exceptions import ClientError
 import pytest
 
-from fixtures.common import fixture_make_stubber
+from catalog.services.kinesis.fixtures.common import fixture_make_stubber
 
 from kinesis_stream import KinesisStream
 

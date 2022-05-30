@@ -146,7 +146,7 @@ class CatalogAlidKinesisService(Resource):
             self.alid_stream.create(os.environ['ALID_STREAM_NAME'])
             logging.debug("Alid kinesis stream created...")
         except Exception as ex:
-            logging.warn("Kinesis stream %s already exists.",os.environ['ALID_STREAM_NAME'])
+            logging.warning("Kinesis stream %s already exists.",os.environ['ALID_STREAM_NAME'])
         finally:
             self.alid_stream.describe(os.environ['ALID_STREAM_NAME'])
 
@@ -183,7 +183,7 @@ class CatalogAvailKinesisService(Resource):
             self.avail_stream.create(os.environ['AVAIL_STREAM_NAME'])
             logging.debug("Avail kinesis stream created...")
         except Exception as ex:
-            logging.warn("Kinesis stream %s already exists.",os.environ['AVAIL_STREAM_NAME'])
+            logging.warning("Kinesis stream %s already exists.",os.environ['AVAIL_STREAM_NAME'])
         finally:
             self.avail_stream.describe(os.environ['AVAIL_STREAM_NAME'])
 
@@ -203,6 +203,6 @@ class CatalogAvailKinesisService(Resource):
         assert validators[os.environ['AVAIL_SCHEMA']].is_valid(message) is True
         date = datetime.datetime.now()
         timestamp = date.timestamp()
-        response = self.alid_stream.put_record(message,'avail')
+        response = self.avail_stream.put_record(message,'avail')
 
         return {"status": "posted", "schema":"avail", "timestamp":timestamp, "date":str(date), "response":json.dumps(response)}
