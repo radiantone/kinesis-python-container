@@ -99,6 +99,12 @@ The unit test for it (also from AWS) is in `tests` directory.
 $ docker compose up test
 ```
 
+For loca pytest of library usage mode
+
+```
+$ pytest tests/local
+```
+
 ## Development Setup
 
 To start, you will need to set a couple environment variables to override the .env which will set paths within the container.
