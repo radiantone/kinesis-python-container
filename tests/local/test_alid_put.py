@@ -13,5 +13,5 @@ def test_alid_put():
     alid_message = open('schemas/messages/sample-alid.json','r')
     alid_m = alid_message.read()
     alid_msg = json.loads(alid_m)
-    response = alid_service.put(alid_msg)
+    response = alid_service.put_message(alid_msg)
     assert response['status'] == 'posted'

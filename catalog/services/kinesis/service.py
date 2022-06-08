@@ -136,8 +136,9 @@ class CatalogKinesisStream:
 class CatalogAlidKinesisService(Resource):
     """ Catalog alid kinesis stream endpoint """
 
-    def __init__(self):
+    def __init__(self, arg):
         super(CatalogAlidKinesisService, self).__init__()
+        print("ARG",arg)
         self.alid_stream = CatalogKinesisStream(boto3.client('kinesis'))
 
 
@@ -158,9 +159,9 @@ class CatalogAlidKinesisService(Resource):
     @api.expect(models[os.environ['ALID_SCHEMA']], validate=True)
     def post(self):
 
-        return self.put(api.payload)
+        return self.put_message(api.payload)
 
-    def put(self, message):
+    def put_message(self, message):
         print(message)
         assert validators[os.environ['ALID_SCHEMA']].is_valid(message) is True
         date = datetime.datetime.now()
@@ -195,10 +196,10 @@ class CatalogAvailKinesisService(Resource):
     @api.expect(models[os.environ['AVAIL_SCHEMA']], validate=True)
     def post(self):
 
-        return self.put(api.payload)
+        return self.put_message(api.payload)
 
 
-    def put(self, message):
+    def put_message(self, message):
         print(message)
         assert validators[os.environ['AVAIL_SCHEMA']].is_valid(message) is True
         date = datetime.datetime.now()

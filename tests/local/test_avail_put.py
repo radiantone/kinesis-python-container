@@ -13,5 +13,5 @@ def test_avail_put():
     avail_message = open('schemas/messages/sample-avail.json','r')
     avail_m = avail_message.read()
     avail_msg = json.loads(avail_m)
-    response = avail_service.put(avail_msg)
+    response = avail_service.put_message(avail_msg)
     assert response['status'] == 'posted'
